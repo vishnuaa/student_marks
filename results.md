@@ -1,11 +1,18 @@
-# SAM 2 (Segment Anything Model 2) Results
+# SAM 3 (Segment Anything Model 3) Results
 
-**Model Description:** An upgraded segmentation framework. Testing revealed that the SAM 2 Base model outperformed the Large model for tight bounding box crops on leaves, serving as the "sweet spot" before scaling class complexity.
+**Model Description:** The latest and most stable architecture used in the project. Extensive experiments were conducted on dataset preprocessing (mixing Normal, Segmented, and Grayscale data) to bridge the gap between synthetic lab data and real-world conditions. 
 
 ### Performance Metrics
 
 | Dataset Used | Classes | Validation Accuracy | Testing Accuracy | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| Normal PlantVillage + Seg PlantDoc | 4 (Base) | 74.00% | 69.00% | Best performing SAM 2 setup. |
-| Normal PlantVillage + Seg PlantDoc | 4 (Large) | 70.00% | 59.00% | Large model underperformed compared to Base. |
-| Normal PlantVillage + Seg PlantDoc | 13 (Base) | 55.00% | 51.00% | Accuracy dropped when scaling up with 9 tomato classes. |
+| Grayscale PlantVillage + Seg PlantDoc | 10 (Mixed) | 86.63% | **85.26%** | **Final stabilized architecture.** Prevented background color confusion. |
+| Segmented PlantVillage + Seg PlantDoc | Dataset Exp. | 82.23% | 87.75% | Highly effective for specific datasets. |
+| Grayscale PlantVillage + Seg PlantDoc | Dataset Exp. | 86.00% | 89.79% | Highest individual experiment performance recorded. |
+| Segmented Datasets | 5 (Apple/Grapes) | 86.00% | 83.66% | Strong baseline for fully segmented pipelines. |
+| Segmented PlantVillage + Seg PlantDoc | 5 (Corn/Tomato) | 86.00% | 82.60% | Consistent performance on specific crops. |
+| Normal PlantVillage + Seg PlantDoc | 10 (Mixed) | 85.56% | 81.00% | Good validation, but Grayscale mix proved superior for testing. |
+| Segmented PlantVillage + Seg PlantDoc | 10 (Mixed) | 83.42% | 81.00% | Fully segmented approach on complex class load. |
+| Normal PlantVillage + Seg PlantDoc | 5 (Corn/Tomato) | 87.15% | 78.26% | |
+| Normal PlantVillage + Seg PlantDoc | 4 (Bell/Potato) | 76.00% | 69.23% | Early SAM 3 baseline. |
+| Grayscale PlantVillage + Seg PlantDoc | 5 (Corn/Tomato) | 86.00% | 73.91% | Struggled slightly on this specific 5-class split. |
