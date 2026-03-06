@@ -1,10 +1,12 @@
-# EfficientNet Results
+# SAM 1 (Segment Anything Model 1) Results
 
-**Model Description:** Standard image classification baseline models (EfficientNet B0 and B3) trained without instance segmentation. These models were used to establish initial benchmarks but struggled significantly with the domain gap between clean lab images and messy real-world photos.
+**Model Description:** The first iteration of integrating instance segmentation to isolate diseased leaf areas. Initial attempts used single center-point cropping, which was later upgraded to a Bounding Box method to ensure uniform feature extraction.
 
 ### Performance Metrics
 
 | Dataset Used | Classes | Validation Accuracy | Testing Accuracy | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| PlantVillage | All | 99.67% (B3) | 25.68% (PlantDoc) | Massive overfitting to clean lab backgrounds. |
-| PlantVillage | All | 96.00% (B0) | 49.00% (PlantDoc) | Performed slightly better on real-world data but still unreliable. |
+| Segmented Data | 15 (Using Eff. B3) | 39.00% | N/A | Center-point cropping caused inconsistent image sizes. |
+| PlantDoc Only (Bounding Box) | 5 (Apple/Bell) | 64.86% | N/A | Bounding box method immediately improved validation. |
+| Train PlantVillage, Fine-tune PlantDoc | 4 (Bell/Potato) | 51.85% | N/A | Fine-tuning alone was insufficient. |
+| Normal PlantVillage + SAM 1 Seg PlantDoc | 4 (Bell/Potato) | 85.19% | 58.00% | Merging datasets boosted validation, but testing remained low. |
